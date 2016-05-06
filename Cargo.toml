@@ -4,9 +4,8 @@ version = "0.1.4"
 authors = ["Steve Klabnik <steve@steveklabnik.com>",
            "Dmitry Gritsay <unseductable@gmail.com>"]
 description = "Low level bindings to MRI, Matz's Ruby Interpreter."
-documentation = "http://d-unseductable.github.io/ruru/ruby-sys/index.html"
-homepage = "https://github.com/d-unseductable/ruru/ruby-sys"
-repository = "https://github.com/d-unseductable/ruru/ruby-sys"
+homepage = "https://github.com/steveklabnik/ruby-sys"
+repository = "https://github.com/steveklabnik/ruby-sys"
 keywords = ["ruby"]
 license = "MIT"
 

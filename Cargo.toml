@@ -14,3 +14,7 @@ links = "ruby"
 
 [dependencies]
 libc = "0.2.10"
+
+[features]
+default = []
+unstable = []

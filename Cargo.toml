@@ -1,6 +1,6 @@
 [package]
 name = "ruby-sys"
-version = "0.1.5"
+version = "0.2.0"
 authors = ["Steve Klabnik <steve@steveklabnik.com>",
            "Dmitry Gritsay <unseductable@gmail.com>"]
 description = "Low level bindings to MRI, Matz's Ruby Interpreter."
@@ -11,7 +11,7 @@ keywords = ["ruby"]
 license = "MIT"
 
 [dependencies]
-libc = "0.2.10"
+libc = "0.2.0"
 
 [features]
 default = []

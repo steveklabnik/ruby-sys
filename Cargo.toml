@@ -10,9 +10,6 @@ repository = "https://github.com/steveklabnik/ruby-sys"
 keywords = ["ruby"]
 license = "MIT"
 
-build = "build.rs"
-links = "ruby"
-
 [dependencies]
 libc = "0.2.10"
 

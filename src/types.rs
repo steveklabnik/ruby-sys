@@ -9,3 +9,9 @@ pub type SignedValue = intptr_t;
 
 pub type Argc = c_int;
 pub type CallbackPtr = *const c_void;
+
+#[repr(C)]
+pub struct RBasic {
+    pub flags: InternalValue,
+    pub klass: InternalValue,
+}

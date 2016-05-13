@@ -1,15 +1,9 @@
 use libc::size_t;
 use std::mem;
 use std::convert::From;
-use types::InternalValue;
+use types::{InternalValue, RBasic};
 
 const SPECIAL_SHIFT: usize = 8;
-
-#[repr(C)]
-struct RBasic {
-    flags: InternalValue,
-    klass: InternalValue,
-}
 
 pub enum RubySpecialConsts {
     False = 0,
@@ -59,7 +53,7 @@ pub enum ValueType {
 #[repr(C)]
 #[derive(Copy, Clone, Debug, PartialEq)]
 pub struct Value {
-    value: InternalValue,
+    pub value: InternalValue,
 }
 
 impl Value {
@@ -89,7 +83,7 @@ impl Value {
 
     pub fn is_flonum(&self) -> bool {
         (self.value & (RubySpecialConsts::FlonumMask as InternalValue)) ==
-            (RubySpecialConsts::FlonumFlag as InternalValue)
+        (RubySpecialConsts::FlonumFlag as InternalValue)
     }
 
     pub fn ty(&self) -> ValueType {

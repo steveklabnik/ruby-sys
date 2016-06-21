@@ -1,14 +1,19 @@
 use std::process::Command;
 
-fn main() {
+fn rbconfig(key: &str) -> Vec<u8> {
     let ruby = Command::new("ruby")
                    .arg("-e")
-                   .arg("puts File.join(File.dirname(File.dirname(RbConfig.ruby)), 'lib')")
+                   .arg(format!("print RbConfig::CONFIG['{}']", key))
                    .output()
                    .unwrap_or_else(|e| panic!("ruby not found: {}", e));
 
-    let ruby_libdir = String::from_utf8_lossy(&ruby.stdout);
+    ruby.stdout
+}
 
-    println!("cargo:rustc-link-search={}", ruby_libdir.trim());
-    println!("cargo:rustc-link-lib=dylib=ruby");
+fn main() {
+    let libdir = rbconfig("libdir");
+    let soname = rbconfig("RUBY_SO_NAME");
+
+    println!("cargo:rustc-link-search={}", String::from_utf8_lossy(&libdir));
+    println!("cargo:rustc-link-lib=dylib={}", String::from_utf8_lossy(&soname));
 }

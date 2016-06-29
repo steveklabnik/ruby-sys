@@ -5,6 +5,7 @@ pub mod class;
 pub mod fixnum;
 pub mod types;
 pub mod hash;
+pub mod rproc;
 pub mod string;
 pub mod symbol;
 pub mod util;

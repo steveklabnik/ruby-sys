@@ -1,5 +1,7 @@
 use libc::size_t;
 use std::mem;
+
+use constant::{FL_USHIFT, FL_USER_1, FL_USER_3, FL_USER_4};
 use types::{c_long, InternalValue, RBasic, Value};
 
 extern "C" {
@@ -10,15 +12,10 @@ extern "C" {
     pub fn rb_ary_store(array: Value, index: c_long, item: Value) -> Value;
 }
 
-const FL_USHIFT: isize = 12;
-const FL_USER_1: isize = 1 << (FL_USHIFT + 1);
-const FL_USER_3: isize = 1 << (FL_USHIFT + 3);
-const FL_USER_4: isize = 1 << (FL_USHIFT + 4);
-
 #[repr(C)]
 enum RArrayEmbed {
-    LenMask = FL_USER_4 | FL_USER_3,
     Flag = FL_USER_1,
+    LenMask = FL_USER_4 | FL_USER_3,
     LenShift = FL_USHIFT + 3,
 }
 
@@ -41,16 +38,14 @@ struct RArray {
     as_: RArrayAs,
 }
 
-pub fn rb_ary_len(value: Value) -> c_long {
-    unsafe {
-        let basic: *const RBasic = mem::transmute(value.value);
-        let flags = (*basic).flags;
-        if flags & (RArrayEmbed::Flag as size_t) == 0 {
-            let array: *const RArray = mem::transmute(value.value);
-            (*array).as_.heap.len
-        } else {
-            ((flags as i64 >> RArrayEmbed::LenShift as i64) &
-             (RArrayEmbed::LenMask as i64 >> RArrayEmbed::LenShift as i64)) as c_long
-        }
+pub unsafe fn rb_ary_len(value: Value) -> c_long {
+    let rarray: *const RArray = mem::transmute(value.value);
+    let flags = (*rarray).basic.flags;
+
+    if flags & (RArrayEmbed::Flag as size_t) == 0 {
+        (*rarray).as_.heap.len
+    } else {
+        ((flags as i64 >> RArrayEmbed::LenShift as i64) &
+         (RArrayEmbed::LenMask as i64 >> RArrayEmbed::LenShift as i64)) as c_long
     }
 }

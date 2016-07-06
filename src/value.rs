@@ -1,6 +1,7 @@
 use libc::size_t;
 use std::mem;
 use std::convert::From;
+
 use types::{InternalValue, RBasic};
 
 const SPECIAL_SHIFT: usize = 8;

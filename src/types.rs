@@ -9,6 +9,7 @@ pub type SignedValue = intptr_t;
 
 pub type Argc = c_int;
 pub type CallbackPtr = *const c_void;
+pub type CallbackMutPtr = *mut c_void;
 
 #[repr(C)]
 pub struct RBasic {

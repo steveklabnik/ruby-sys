@@ -1,7 +1,19 @@
-use types::{c_char, Value};
+use types::{CallbackPtr, c_char, c_int, c_void, Value};
 
 extern "C" {
     pub fn rb_block_proc() -> Value;
     pub fn rb_require(name: *const c_char) -> Value;
     pub fn ruby_init();
+    pub fn rb_thread_call_without_gvl(func: CallbackPtr,
+                                      args: *const c_void,
+                                      unblock_func: CallbackPtr,
+                                      unblock_args: *const c_void)
+                                      -> *mut c_void;
+    pub fn rb_thread_call_without_gvl2(func: CallbackPtr,
+                                       args: *const c_void,
+                                       unblock_func: CallbackPtr,
+                                       unblock_args: *const c_void)
+                                       -> *mut c_void;
+    pub fn rb_thread_call_with_gvl(func: CallbackPtr, args: *const c_void) -> *mut c_void;
+    pub fn rb_protect(func: CallbackPtr, args: *const c_void, state: *mut c_int) -> Value;
 }

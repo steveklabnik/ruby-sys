@@ -15,4 +15,5 @@ extern "C" {
                                        unblock_args: *const c_void)
                                        -> *mut c_void;
     pub fn rb_thread_call_with_gvl(func: CallbackPtr, args: *const c_void) -> *mut c_void;
+    pub fn rb_protect(func: CallbackPtr, args: *const c_void, state: *mut c_int) -> Value;
 }

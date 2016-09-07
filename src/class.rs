@@ -9,6 +9,7 @@ extern "C" {
     pub fn rb_ivar_get(object: Value, name: Id) -> Value;
     pub fn rb_ivar_set(object: Value, name: Id, value: Value) -> Value;
     pub fn rb_obj_class(object: Value) -> Value;
+    pub fn rb_class_superclass(class: Value) -> Value;
 
     pub fn rb_define_singleton_method(klass: Value,
                                       name: *const c_char,

@@ -11,7 +11,8 @@ extern "C" {
     pub fn rb_ivar_set(object: Value, name: Id, value: Value) -> Value;
     pub fn rb_mod_ancestors(module: Value) -> Value;
     pub fn rb_obj_class(object: Value) -> Value;
-    pub fn rb_respond_to(obj: Value, id: Id) -> c_int;
+    pub fn rb_respond_to(object: Value, id: Id) -> c_int;
+    pub fn rb_singleton_class(object: Value) -> Value;
 
     pub fn rb_define_singleton_method(klass: Value,
                                       name: *const c_char,

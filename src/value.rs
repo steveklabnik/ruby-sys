@@ -6,6 +6,21 @@ use types::{InternalValue, RBasic};
 
 const SPECIAL_SHIFT: usize = 8;
 
+#[cfg(target_pointer_width = "32")]
+pub enum RubySpecialConsts {
+    False = 0,
+    True = 0x02,
+    Nil = 0x04,
+    Undef = 0x06,
+
+    ImmediateMask = 0x03,
+    FixnumFlag = 0x01,
+    FlonumMask = 0x00,
+    FlonumFlag = 0x02,
+    SymbolFlag = 0x0e,
+}
+
+#[cfg(target_pointer_width = "64")]
 pub enum RubySpecialConsts {
     False = 0,
     True = 0x14,

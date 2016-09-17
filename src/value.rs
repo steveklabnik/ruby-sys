@@ -6,13 +6,18 @@ use types::{InternalValue, RBasic};
 
 const SPECIAL_SHIFT: usize = 8;
 
-#[cfg(target_pointer_width = "32")]
+// Split RubySpecialConsts and RubySpecialFlags
+
+#[cfg(not(target_arch = "x86_64"))]
 pub enum RubySpecialConsts {
     False = 0,
     True = 0x02,
     Nil = 0x04,
     Undef = 0x06,
+}
 
+#[cfg(not(target_arch = "x86_64"))]
+pub enum RubySpecialFlags {
     ImmediateMask = 0x03,
     FixnumFlag = 0x01,
     FlonumMask = 0x00,
@@ -20,13 +25,16 @@ pub enum RubySpecialConsts {
     SymbolFlag = 0x0e,
 }
 
-#[cfg(target_pointer_width = "64")]
+#[cfg(target_arch = "x86_64")]
 pub enum RubySpecialConsts {
     False = 0,
     True = 0x14,
     Nil = 0x08,
     Undef = 0x34,
+}
 
+#[cfg(target_arch = "x86_64")]
+pub enum RubySpecialFlags {
     ImmediateMask = 0x07,
     FixnumFlag = 0x01,
     FlonumMask = 0x03,
@@ -90,16 +98,16 @@ impl Value {
     }
 
     pub fn is_symbol(&self) -> bool {
-        (self.value & !((!0) << SPECIAL_SHIFT)) == (RubySpecialConsts::SymbolFlag as InternalValue)
+        (self.value & !((!0) << SPECIAL_SHIFT)) == (RubySpecialFlags::SymbolFlag as InternalValue)
     }
 
     pub fn is_fixnum(&self) -> bool {
-        (self.value & (RubySpecialConsts::FixnumFlag as InternalValue)) != 0
+        (self.value & (RubySpecialFlags::FixnumFlag as InternalValue)) != 0
     }
 
     pub fn is_flonum(&self) -> bool {
-        (self.value & (RubySpecialConsts::FlonumMask as InternalValue)) ==
-        (RubySpecialConsts::FlonumFlag as InternalValue)
+        (self.value & (RubySpecialFlags::FlonumMask as InternalValue)) ==
+        (RubySpecialFlags::FlonumFlag as InternalValue)
     }
 
     pub fn ty(&self) -> ValueType {
@@ -131,7 +139,7 @@ impl Value {
     }
 
     fn is_immediate(&self) -> bool {
-        (self.value & (RubySpecialConsts::ImmediateMask as InternalValue)) != 0
+        (self.value & (RubySpecialFlags::ImmediateMask as InternalValue)) != 0
     }
 
     fn test(&self) -> bool {

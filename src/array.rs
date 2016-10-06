@@ -11,6 +11,11 @@ extern "C" {
     pub fn rb_ary_push(array: Value, item: Value) -> Value;
     pub fn rb_ary_store(array: Value, index: c_long, item: Value) -> Value;
     pub fn rb_ary_pop(array: Value) -> Value;
+    pub fn rb_ary_unshift(array: Value, item: Value) -> Value;
+    pub fn rb_ary_shift(array: Value) -> Value;
+    pub fn rb_ary_dup(array: Value) -> Value;
+    pub fn rb_ary_to_s(array: Value) -> Value;
+    pub fn rb_ary_reverse(array: Value) -> Value;
 }
 
 #[repr(C)]

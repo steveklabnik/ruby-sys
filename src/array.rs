@@ -10,6 +10,7 @@ extern "C" {
     pub fn rb_ary_new() -> Value;
     pub fn rb_ary_push(array: Value, item: Value) -> Value;
     pub fn rb_ary_store(array: Value, index: c_long, item: Value) -> Value;
+    pub fn rb_ary_pop(array: Value) -> Value;
 }
 
 #[repr(C)]

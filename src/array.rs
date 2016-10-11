@@ -5,12 +5,20 @@ use constant::{FL_USHIFT, FL_USER_1, FL_USER_3, FL_USER_4};
 use types::{c_long, InternalValue, RBasic, Value};
 
 extern "C" {
+    pub fn rb_ary_concat(array: Value, other_array: Value) -> Value;
+    pub fn rb_ary_dup(array: Value) -> Value;
     pub fn rb_ary_entry(array: Value, offset: c_long) -> Value;
     pub fn rb_ary_join(array: Value, separator: Value) -> Value;
     pub fn rb_ary_new() -> Value;
-    pub fn rb_ary_push(array: Value, item: Value) -> Value;
-    pub fn rb_ary_store(array: Value, index: c_long, item: Value) -> Value;
     pub fn rb_ary_pop(array: Value) -> Value;
+    pub fn rb_ary_push(array: Value, item: Value) -> Value;
+    pub fn rb_ary_reverse(array: Value) -> Value;
+    pub fn rb_ary_shift(array: Value) -> Value;
+    pub fn rb_ary_sort_bang(array: Value) -> Value;
+    pub fn rb_ary_sort(array: Value) -> Value;
+    pub fn rb_ary_store(array: Value, index: c_long, item: Value) -> Value;
+    pub fn rb_ary_to_s(array: Value) -> Value;
+    pub fn rb_ary_unshift(array: Value, item: Value) -> Value;
 }
 
 #[repr(C)]

@@ -9,6 +9,7 @@ pub mod hash;
 pub mod rproc;
 pub mod string;
 pub mod symbol;
+pub mod typed_data;
 pub mod types;
 pub mod util;
 pub mod value;

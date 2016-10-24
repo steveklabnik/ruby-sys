@@ -5,6 +5,7 @@ pub mod constant;
 pub mod class;
 pub mod fixnum;
 pub mod gc;
+pub mod float;
 pub mod hash;
 pub mod rproc;
 pub mod string;

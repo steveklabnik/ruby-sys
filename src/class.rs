@@ -17,6 +17,7 @@ extern "C" {
     pub fn rb_ivar_set(object: Value, name: Id, value: Value) -> Value;
     pub fn rb_mod_ancestors(module: Value) -> Value;
     pub fn rb_obj_class(object: Value) -> Value;
+    pub fn rb_obj_freeze(object: Value) -> Value;
     pub fn rb_prepend_module(klass: Value, module: Value);
     pub fn rb_respond_to(object: Value, id: Id) -> c_int;
     pub fn rb_singleton_class(object: Value) -> Value;

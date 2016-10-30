@@ -6,6 +6,7 @@ extern "C" {
     pub fn rb_define_attr(klass: Value, name: *const c_char, read: c_int, write: c_int);
     pub fn rb_define_class(name: *const c_char, superclass: Value) -> Value;
     pub fn rb_define_class_under(outer: Value, name: *const c_char, superclass: Value) -> Value;
+    pub fn rb_define_const(klass: Value, name: *const c_char, value: Value);
     pub fn rb_define_method(klass: Value, name: *const c_char, callback: CallbackPtr, argc: Argc);
     pub fn rb_define_module(name: *const c_char) -> Value;
     pub fn rb_define_module_under(outer: Value, name: *const c_char) -> Value;

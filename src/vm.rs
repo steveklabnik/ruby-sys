@@ -3,6 +3,7 @@ use types::{CallbackPtr, c_char, c_int, c_void, Value};
 extern "C" {
     pub fn ruby_init();
     pub fn rb_block_proc() -> Value;
+    pub fn rb_block_given_p() -> c_int;
     pub fn rb_raise(exception: Value, message: *const c_char);
     pub fn rb_require(name: *const c_char) -> Value;
     pub fn rb_thread_call_without_gvl(func: CallbackPtr,

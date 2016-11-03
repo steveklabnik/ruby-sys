@@ -1,6 +1,6 @@
 [package]
 name = "ruby-sys"
-version = "0.2.16"
+version = "0.2.17"
 authors = ["Steve Klabnik <steve@steveklabnik.com>",
            "Dmitry Gritsay <unseductable@gmail.com>"]
 description = "Low level bindings to MRI, Matz's Ruby Interpreter."

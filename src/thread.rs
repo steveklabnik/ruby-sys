@@ -1,4 +1,7 @@
-use types::{CallbackPtr, c_void, RawFd, Value};
+use types::{CallbackPtr, c_void, Value};
+
+#[cfg(unix)]
+use types::RawFd;
 
 extern "C" {
     pub fn rb_thread_call_without_gvl(func: CallbackPtr,
@@ -18,5 +21,7 @@ extern "C" {
     pub fn rb_thread_create(function: extern "C" fn(*mut c_void) -> Value,
                             data: *mut c_void)
                             -> Value;
+
+    #[cfg(unix)]
     pub fn rb_thread_wait_fd(fd: RawFd);
 }

@@ -36,16 +36,11 @@ before_script:
 script:
 - |
   travis-cargo build &&
-  travis-cargo test &&
-  travis-cargo --only stable doc
-
-after_success:
-- travis-cargo --only stable doc-upload
+  travis-cargo test
 
 env:
   global:
     - TRAVIS_CARGO_NIGHTLY_FEATURE=""
-    - secure: E6l6olP0DaZYYk+BHteBGQt6dgNWzshYVKE8xAfS7Z/QSNDnXXRcrhQyQFj2WY5JrLUtY6BX9qbIL9DL+MDqKKcDoKddo8GBw8Xo9Pc58+SFrd/6a8xEjNVef5+J5BaNzVxdi+F4JLGO8c5eTDQgxlIW7saybEAH69GNtqm3NiW8Arjd8KoiIx7mYRt8gmK6CIl1Qto7zZGRWH0AamKmpqpZKTtQRKVzNzXCvMiD4c6YnhnaHkswfsnQHbxj4eXiFZZLhKkpinyD3ZeKCd2heMopCFX8qqoSC745lGQyIAt6M4VwaYxyIHBUwBY5Jqmj/qerALzpWdarCFJjSEGnDKvYqSbSsSN/1GDoaVVneENtD+n2TISN+4HcfiIBe6SfQvXAC3zMzlUvDJ7cDtUupiqelsj6qmI9DzppiJfgk4vhPa2iOTGTxDZAG+2kFd7ZZEdbzQg76E5BWHp7JuXG5MChNYi2Ke4VLWkr9acwd3ykIQ+7xgX2+agWfixcWob6Au7c/cat+iL19kR4/Sis9qGbZkefhP3bh0peseJ3ODuYIwfStX30qLlmJpq50r5nrRIQs4DL/z2EtKY56Z5wOfDC9qQj/b7UBv+3I4CWnV62uFz+I68NHw3qFBjKva1YDihOf6CwYpGFR6K81WsR/ferucjhG++7//avvNVFmzo=
   matrix:
     - BUILD_RUBY_VERSION: 2.2.5
     - BUILD_RUBY_VERSION: 2.3.1

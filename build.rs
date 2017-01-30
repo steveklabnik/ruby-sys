@@ -20,6 +20,8 @@ fn main() {
     let libdir = rbconfig("libdir");
     let soname = rbconfig("RUBY_SO_NAME");
 
-    println!("cargo:rustc-link-search={}", String::from_utf8_lossy(&libdir));
-    println!("cargo:rustc-link-lib=dylib={}", String::from_utf8_lossy(&soname));
+    println!("cargo:rustc-link-search={}",
+             String::from_utf8_lossy(&libdir));
+    println!("cargo:rustc-link-lib=dylib={}",
+             String::from_utf8_lossy(&soname));
 }

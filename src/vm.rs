@@ -2,6 +2,7 @@ use types::{CallbackPtr, c_char, c_int, c_void, Value};
 
 extern "C" {
     pub fn ruby_init();
+    pub fn ruby_cleanup(code: c_int) -> c_int;
     pub fn rb_block_proc() -> Value;
     pub fn rb_block_given_p() -> c_int;
     pub fn rb_raise(exception: Value, message: *const c_char);

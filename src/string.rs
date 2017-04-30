@@ -7,6 +7,7 @@ use types::{c_char, c_long, InternalValue, RBasic, Value};
 extern "C" {
     pub fn rb_str_new(str: *const c_char, len: c_long) -> Value;
     pub fn rb_str_new_cstr(str: *const c_char) -> Value;
+    pub fn rb_utf8_str_new(str: *const c_char, len: c_long) -> Value;
     pub fn rb_string_value_cstr(str: *const Value) -> *const c_char;
     pub fn rb_string_value_ptr(str: *const Value) -> *const c_char;
 }

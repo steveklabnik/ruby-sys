@@ -6,7 +6,7 @@ os:
 - osx
 sudo: false
 dist: trusty
-osx_image: xcode8.2
+osx_image: xcode8.3
 
 language: rust
 rust:
@@ -44,12 +44,9 @@ env:
   global:
     - TRAVIS_CARGO_NIGHTLY_FEATURE=""
   matrix:
-    - BUILD_RUBY_VERSION: 2.2.5
-    - BUILD_RUBY_VERSION: 2.2.5
+    - BUILD_RUBY_VERSION: 2.3.5
+    - BUILD_RUBY_VERSION: 2.3.5
       RUBY_STATIC: 1
-    - BUILD_RUBY_VERSION: 2.3.1
-    - BUILD_RUBY_VERSION: 2.3.1
-      RUBY_STATIC: 1
-    - BUILD_RUBY_VERSION: 2.4.1
-    - BUILD_RUBY_VERSION: 2.4.1
+    - BUILD_RUBY_VERSION: 2.4.2
+    - BUILD_RUBY_VERSION: 2.4.2
       RUBY_STATIC: 1

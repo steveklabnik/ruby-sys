@@ -25,13 +25,24 @@ fn transform_lib_args(rbconfig_key: &str, replacement: &str) -> String {
 }
 
 fn use_static() {
+    // LIBRUBY_A returns full library name in the form: `libruby-static.a`
+    // or `libruby.static-2.4.2.a`
+    // Cargo wants them as: `ruby-static` or `ruby.2.4.2-static`
+    let libruby_a = rbconfig("LIBRUBY_A");
+    let static_lib_name = libruby_a.trim_left_matches("lib").trim_right_matches(".a");
+
+    println!("cargo:rustc-link-lib=static={}", static_lib_name);
+
     // Ruby gives back the libs in the form: `-lpthread -lgmp`
     // Cargo wants them as: `-l pthread -l gmp`
     println!("cargo:rustc-flags={}", transform_lib_args("LIBS", "-l "));
+
+    if cfg!(target_os = "macos") {
+        println!("cargo:rustc-link-lib=framework=CoreFoundation");
+    }
 }
 
 fn use_dylib() {
-    use_libdir();
     println!("cargo:rustc-link-lib=dylib={}", rbconfig("RUBY_SO_NAME"));
 }
 
@@ -51,4 +62,6 @@ fn main() {
             }
         }
     }
+
+    use_libdir();
 }

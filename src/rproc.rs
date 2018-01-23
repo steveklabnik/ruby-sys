@@ -6,4 +6,6 @@ extern "C" {
                                    argv: *const Value,
                                    pass_procval: Value)
                                    -> Value;
+
+    pub fn rb_proc_new(func: extern fn(Value) -> Value, binding: Value) -> Value;
 }

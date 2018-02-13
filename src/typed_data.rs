@@ -1,7 +1,9 @@
-use types::{c_char, c_void, size_t, Value};
+use types::{c_char, c_void, c_int, size_t, Value};
 
 extern "C" {
     pub fn rb_check_typeddata(object: Value, data_type: *const RbDataType) -> *mut c_void;
+    pub fn rb_typeddata_inherited_p(child: *const RbDataType, parent: *const RbDataType) -> c_int;
+    pub fn rb_typeddata_is_kind_of(object: Value, data_type: *const RbDataType) -> c_int;
 
     pub fn rb_data_typed_object_wrap(klass: Value,
                                      data: *mut c_void,

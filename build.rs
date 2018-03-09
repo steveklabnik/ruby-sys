@@ -16,14 +16,9 @@ fn rbconfig(key: &str) -> String {
     String::from_utf8(config.stdout).expect("RbConfig value not UTF-8!")
 }
 
-fn transform_lib_args(rbconfig_key: &str, replacement: &str) -> String {
-    rbconfig(rbconfig_key).replace("-l", replacement)
-}
-
 fn main() {
-    println!("cargo:rustc-link-search={}", rbconfig("libdir"));
-    println!("cargo:rustc-flags={}", transform_lib_args("LIBS", "-l "));
     if cfg!(feature="test") {
+        println!("cargo:rustc-link-search={}", rbconfig("libdir"));
         println!("cargo:rustc-link-lib=dylib={}", rbconfig("RUBY_SO_NAME"));
     }
 }

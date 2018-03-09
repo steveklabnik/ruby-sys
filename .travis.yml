@@ -32,7 +32,7 @@ before_install:
   ruby -e 'require "pp"; pp RbConfig::CONFIG'
 
 before_script:
-- if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo pip install 'travis-cargo<0.2' --user; fi
+- if [ "$TRAVIS_OS_NAME" == "linux" ]; then pip install 'travis-cargo<0.2' --user; fi
 - if [ "$TRAVIS_OS_NAME" == "osx" ]; then pip2 install 'travis-cargo<0.2' --user; fi
 - export PATH=$HOME/Library/Python/2.7/bin:$HOME/.local/bin:$PATH
 

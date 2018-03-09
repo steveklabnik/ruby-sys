@@ -25,15 +25,16 @@ matrix:
 
 before_install:
 - |
+  rvm get stable
   rvm install "$BUILD_RUBY_VERSION"
   rvm use "$BUILD_RUBY_VERSION"
   ruby --version
   ruby -e 'require "pp"; pp RbConfig::CONFIG'
 
 before_script:
-- |
-  pip install 'travis-cargo<0.2' --user &&
-  export PATH=$HOME/Library/Python/2.7/bin:$HOME/.local/bin:$PATH
+- if [ "$TRAVIS_OS_NAME" == "linux" ]; then pip install 'travis-cargo<0.2' --user; fi
+- if [ "$TRAVIS_OS_NAME" == "osx" ]; then pip2 install 'travis-cargo<0.2' --user; fi
+- export PATH=$HOME/Library/Python/2.7/bin:$HOME/.local/bin:$PATH
 
 script:
 - |
@@ -45,8 +46,4 @@ env:
     - TRAVIS_CARGO_NIGHTLY_FEATURE=""
   matrix:
     - BUILD_RUBY_VERSION: 2.3.5
-    - BUILD_RUBY_VERSION: 2.3.5
-      RUBY_STATIC: 1
     - BUILD_RUBY_VERSION: 2.4.2
-    - BUILD_RUBY_VERSION: 2.4.2
-      RUBY_STATIC: 1

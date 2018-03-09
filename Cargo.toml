@@ -19,3 +19,4 @@ libc = "0.2.0"
 [features]
 default = []
 unstable = []
+test = []

@@ -3,6 +3,7 @@ extern crate libc;
 pub mod array;
 pub mod constant;
 pub mod class;
+pub mod encoding;
 pub mod fixnum;
 pub mod gc;
 pub mod float;

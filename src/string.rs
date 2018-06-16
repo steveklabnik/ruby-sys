@@ -10,6 +10,9 @@ extern "C" {
     pub fn rb_utf8_str_new(str: *const c_char, len: c_long) -> Value;
     pub fn rb_string_value_cstr(str: *const Value) -> *const c_char;
     pub fn rb_string_value_ptr(str: *const Value) -> *const c_char;
+    pub fn rb_str_ascii_only_p(str: Value) -> bool;
+    pub fn rb_str_export_locale(str: Value) -> Value;
+    pub fn rb_str_valid_encoding_p(str: Value) -> bool;
 }
 
 #[repr(C)]
